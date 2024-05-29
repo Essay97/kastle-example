@@ -13,6 +13,48 @@ class ExampleGame : GameProvider {
                 behavior = LinkBehavior.CONSTANT
                 state = LinkState.OPEN
             }
+
+            item("i-table") {
+                name = "Table"
+                description = "A nice wooden table"
+            }
+
+            character("c-doorman") {
+                name = "Jack"
+                description = "Jack is the official Kastle's doorman!"
+
+                dialogue {
+                    firstQuestion("d-first") {
+                        text = "Hey player! are you ready for the adventure?"
+                        answer {
+                            text = "Yes!"
+                            nextQuestion = "d-ifyes"
+                        }
+                        answer {
+                            text = "No..."
+                            nextQuestion = "d-ifno"
+                        }
+                    }
+
+                    question("d-ifyes") {
+                        text = "Ok, take this and go the the next room!"
+                        reward("i-diploma") {
+                            name = "Diploma"
+                            description = """
+                    It's a nice diploma with decorated borders. It says:
+                    'Well done, player!
+
+                    You reached the end of your first Kastle game.
+                    Move to the north to win the game!'
+                """.trimIndent()
+                        }
+                    }
+
+                    question("d-ifno") {
+                        text = "No problem, I'll wait until you're ready, but you're missing a lot of fun!"
+                    }
+                }
+            }
         }
 
         room("r-next") {
