@@ -6,6 +6,12 @@ import io.github.essay97.kastle.service.GameProvider
 
 class ExampleGame : GameProvider {
     override fun provideConfiguration(): GameConfiguration = game("r-start") {
+        preface = """
+        This is the preface of this game.
+        As you can see here, by exploiting Kotlin multiline strings, we can provide a quite long text as a preface,
+        so in a real game we would have plenty of space to contextualize our game!
+        """.trimIndent()
+
         room("r-start") {
             name = "Initial room"
             description = "This is the first room that the player sees"
