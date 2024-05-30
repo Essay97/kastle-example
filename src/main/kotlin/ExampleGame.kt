@@ -3,9 +3,18 @@ import io.github.essay97.kastle.dto.GameConfiguration
 import io.github.essay97.kastle.dto.LinkState
 import io.github.essay97.kastle.model.LinkBehavior
 import io.github.essay97.kastle.service.GameProvider
+import kotlinx.datetime.LocalDate
 
 class ExampleGame : GameProvider {
     override fun provideConfiguration(): GameConfiguration = game("r-start") {
+
+        metadata {
+            name = "Example Game"
+            author = "Enrico Saggiorato"
+            version = "1.0.0"
+            published = LocalDate(2024, 5, 30)
+        }
+
         preface = """
         This is the preface of this game.
         As you can see here, by exploiting Kotlin multiline strings, we can provide a quite long text as a preface,
@@ -23,6 +32,17 @@ class ExampleGame : GameProvider {
             item("i-table") {
                 name = "Table"
                 description = "A nice wooden table"
+            }
+
+            item("i-medal") {
+                name = "Medal"
+                description = "This medal wins the game!"
+            }
+
+            item("i-sword") {
+                name = "Sword"
+                matchers("blade", "weapon")
+                storable = true
             }
 
             character("c-doorman") {
